@@ -1,24 +1,22 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema(
+const messageSchema = new mongoose.Schema(
     {
-        email: {
-            type : String,
+        senderId: {
+            type : mongoose.Schema.Types.ObjectId,
             required: true,
-            unique: true,
+            ref: "User",
         },
-        fullName: {
+        recieverId: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "User",
+        },
+        text: {
             type: String,
-            required: true,
         },
-        password: {
-            type: String,
-            required: true,
-            minlength: 6,
-        },
-        profilepic : {
+        image : {
             type : String,
-            default : "",
         },
     },
     {

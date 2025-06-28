@@ -10,7 +10,7 @@ export const generatetokens = (userId , res) => {
         maxAge : 30*24*60*60*1000,
         httpOnly: true,
         secure: process.env.NODE_ENV === "production", // Use secure cookies in production
-        sameSite: "strict" // Helps prevent CSRF attacks
+        sameSite: "lax" // Helps prevent CSRF attacks
         
 
     })
