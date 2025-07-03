@@ -8,7 +8,7 @@ const AuthImagePattern = ({ title, subtitle }) => {
               key={i}
               className={`aspect-square rounded-2xl bg-primary/10 ${
                 i % 2 === 0 ? "animate-pulse" : ""
-              }`}
+              }border border-primary/30 shadow-md`}
             />
           ))}
         </div>

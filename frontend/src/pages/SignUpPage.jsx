@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { MessageSquare, User, Mail, Lock, Eye, EyeOff, Loader2 } from 'lucide-react'
 import AuthImagePattern from '../components/AuthImagePattern'
 import { useAuthStore } from '../store/useAuthStore'
+import toast from "react-hot-toast"
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,8 +16,20 @@ const SignUpPage = () => {
 
   const { signup , isSigningUp } = useAuthStore();
 
+  const validateform = () => {
+    if(!formData.fullName.trim()) return toast.error("Full Name is required");
+    if(!formData.email.trim()) return toast.error("Email is required");
+    if(!/\S+@\S+\.\S+/.test(formData.email)) return toast.error("Invalid email format");
+    if(!formData.password.trim()) return toast.error("Password is required");
+    if(formData.password.length < 6) return toast.error("Password must be at least")
+    return true;
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const success = validateform();
+    if (success == true) signup(formData); ;
 
     if (!formData.fullName || !formData.email || !formData.password) {
       alert("All fields are required");
