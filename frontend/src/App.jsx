@@ -9,17 +9,20 @@ import SignUpPage from './pages/SignUpPage'
 import ProfilePage from './pages/ProfilePage'
 import SettingsPage from './pages/Settingspage'
 import { Navigate } from "react-router-dom";
+import { Toaster } from 'react-hot-toast'
  
 import Navbar from './components/Navbar'
 import { useAuthStore } from './store/useAuthStore'
 
 const App = () => {
   
+  
   const {authUser,checkAuth , isCheckingAuth} = useAuthStore();
 
   useEffect(() => {
-   checkAuth();
-    
+   
+        document.documentElement.setAttribute("data-theme", "valentine"); // Set your desired theme here
+checkAuth();
   }, []);
   
   console.log("Auth User:", authUser);  
@@ -29,8 +32,9 @@ if (isCheckingAuth && !authUser) {
       </div>)
   }
   return (
-    <div>
+    <div className='pt-16' data-theme="valentine">
       <Navbar />
+      <Toaster position="top-center" />
       <Routes>
       <Route path="/" element={authUser ?  <HomePage /> : <Navigate to="/login" />} />
       <Route path="/login" element={!authUser ?  <LoginPage /> : <Navigate to="/" />} />
