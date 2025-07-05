@@ -13,17 +13,18 @@ import { Toaster } from 'react-hot-toast'
  
 import Navbar from './components/Navbar'
 import { useAuthStore } from './store/useAuthStore'
+import { useThemeStore } from './store/useThemeStore'
 
 const App = () => {
   
   
   const {authUser,checkAuth , isCheckingAuth} = useAuthStore();
-
+ const { theme } =  useThemeStore()
   useEffect(() => {
    
-        document.documentElement.setAttribute("data-theme", "valentine"); // Set your desired theme here
+        // document.documentElement.setAttribute("data-theme", theme); // Set your desired theme here
 checkAuth();
-  }, []);
+  }, [checkAuth]);
   
   console.log("Auth User:", authUser);  
 if (isCheckingAuth && !authUser) {
@@ -32,7 +33,7 @@ if (isCheckingAuth && !authUser) {
       </div>)
   }
   return (
-    <div className='pt-16' data-theme="valentine">
+    <div className='pt-16' data-theme={theme}>
       <Navbar />
       <Toaster position="top-center" />
       <Routes>
@@ -46,4 +47,4 @@ if (isCheckingAuth && !authUser) {
   )
 }
 
-export default App
+export default App;
