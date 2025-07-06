@@ -5,12 +5,12 @@ const messageSchema = new mongoose.Schema(
     senderId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "User", // ✅ correct: ref as string
+      ref: "User", 
     },
     receiverId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "User", // ✅ correct
+      ref: "User", 
     },
     text: {
       type: String,
@@ -24,4 +24,4 @@ const messageSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model("Message", messageSchema); // ✅ Export Message model only
+export default mongoose.model("Message", messageSchema);

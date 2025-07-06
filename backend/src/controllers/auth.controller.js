@@ -97,7 +97,7 @@ export const updateProfile = async (req, res) => {
       userId,
       {
         profilepic: uploadResponse.secure_url,
-        ...(fullName && { fullName }), // update fullName only if provided
+        ...(fullName && { fullName }), 
       },
       { new: true }
     );
